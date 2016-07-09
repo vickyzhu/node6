@@ -21,3 +21,5 @@ console.log(person);
     //如果导出的是引用数据类型 用module.exports =Function
     //错误方式epxorts = Function
 })();
+
+//require/exports/modules.exports
