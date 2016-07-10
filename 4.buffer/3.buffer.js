@@ -48,5 +48,11 @@ Buffer.myConcat = function (list,totalLength) {
     return buffer.slice(0,index);
 };
 console.log(Buffer.myConcat([bu1,bu2],100).toString());
-
 //判断长度传递没有，判断不够长，过长的状况
+//判断是否是buffer
+console.log(Buffer.isBuffer(new Buffer(1)));
+//字节的长度
+console.log(Buffer.byteLength(new Buffer('珠峰')));
+
+
+
