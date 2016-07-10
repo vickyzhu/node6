@@ -44,7 +44,7 @@ Buffer.myConcat = function (list,totalLength) {
         item.copy(buffer,index);
         index+= item.length;
     });
-    //totallength过长，我们通过自己维护的索引进行截取
+    //totalLength过长，我们通过自己维护的索引进行截取
     return buffer.slice(0,index);
 };
 console.log(Buffer.myConcat([bu1,bu2],100).toString());
