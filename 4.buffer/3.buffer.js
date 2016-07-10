@@ -20,7 +20,33 @@ var bu2 = new Buffer('培训')
 console.log(newBuffer.toString());*/
 //连接buffer
 Buffer.myConcat = function (list,totalLength) {
-
+    //把buffer拼成一个  buffer.copy考入到大buffer中之后返回
+    //先判断当前list的个数，如果只有一个直接返回
+    if(list.length==1){
+        return list[0];
+    }
+    //我们要判断totalLength有没有传递
+    if(typeof totalLength=='undefined'){
+        totalLength  = 0;
+        //我们要根据list的长度来计算
+        //遍历数组拿到每一项的长度
+        list.forEach(function (item) {
+            totalLength+=item.length;
+            //计算出总长度
+        });
+    }
+    //构建buffer
+    var buffer = new Buffer(totalLength);
+    //要把每一个小的buffer copy到大buffer里面
+    var index = 0;
+    list.forEach(function (item) {
+        //将每一个item放入到buffer中
+        item.copy(buffer,index);
+        index+= item.length;
+    });
+    //totallength过长，我们通过自己维护的索引进行截取
+    return buffer.slice(0,index);
 };
-Buffer.myConcat([bu1,bu2],100);
+console.log(Buffer.myConcat([bu1,bu2],100).toString());
+
 //判断长度传递没有，判断不够长，过长的状况
